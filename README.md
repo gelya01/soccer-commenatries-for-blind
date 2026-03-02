@@ -3,7 +3,8 @@
 Этот репозиторий фиксирует базовый прототип пайплайна для генерации футбольного комментария по данным StatsBomb (event data + 360 freeze-frame) и последующей озвучки (TTS).
 
 ## Что сделано (базовый чекпоинт)
-**Обработка только первых 15 событий матча из пула событий ['Pass', 'Ball Receipt', 'Carry','Duel']**
+**Генерация производилась только по первым 15 событиям матча Германия-Шотландия ЧЕ-24 из пула событий ['Pass', 'Ball Receipt', 'Carry','Duel']**
+Дальше API попросил денег(
 
 - Разобралась со структурой данных StatsBomb:
   - `event_data` (события матча)
@@ -77,30 +78,15 @@ audio_sec - длительность озвученного фрагмента �
   - `3930158_std_360.json` (360, стандартизированные)
 - Визуализации эпизодов: `event_images/`
 - Логи комментариев: `outputs/commentary_log.txt`, `outputs/commentary_log_2.txt`
-- Пример аудио: `outputs/commentary_tts_mms_rus.wav`
+- Пример аудио: `outputs/commentary_tts_qwen_male_commentator.wav`
 - Бенчмарк/прогон TTS: `tts_benchmark_hf.ipynb`
-- Ноутбук/черновик по StatsBomb + генерации: `statsbomb.ipynb`, `statsbomb copy.ipynb`
+- Ноутбук по StatsBomb + генерации: `statsbomb copy.ipynb`
 - Мини-библиотека с кодом пайплайна: `statsbomb_toolkit/`
   - `statsbomb_toolkit/data.py` (нормализация, flip/стандартизация координат, чистка)
   - `statsbomb_toolkit/viz.py` (отрисовка поля/события/360)
-  - `statsbomb_toolkit/pipeline.py` (подготовка эпизодов и промпта)
   - `statsbomb_toolkit/gigachat.py` (клиент GigaChat API)
 
-## PDF с описанием событий
+## Полезное
+Запись видео-трансляции этого матча в вк
 
-План: добавить PDF с полным описанием схемы событий/полей StatsBomb и ссылку на него отсюда.
-
-- TODO: `docs/statsbomb_events_description.pdf` (добавить файл и обновить ссылку)
-
-## Как воспроизвести (очень коротко)
-
-1. Для генерации комментариев нужен доступ к GigaChat и ключ:
-   - переменная окружения `GIGACHAT_BASIC_AUTH` (см. `statsbomb_toolkit/gigachat.py`)
-   - сертификат `russian_trusted_root_ca.pem` используется для verify, если включено.
-2. Запусти ноутбуки:
-   - `statsbomb.ipynb` или `statsbomb copy.ipynb` (подготовка эпизодов, генерация комментария, сохранение `outputs/commentary_log.txt`)
-   - `tts_benchmark_hf.ipynb` (озвучка текста из `outputs/commentary_log.txt`, сбор wav/таблиц).
-
-## Заметки по координатам
-
-Визуализация и “словарь зон” поля опираются на StatsBomb-представление: поле 120x80 (x: 0..120, y: 0..80). Реальная ориентация событий приводится к единому направлению через flip на уровне данных.
+https://vk.ru/video-234512527_456239594
