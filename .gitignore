@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# Secrets / local config
+.env
+
+# ML training artifacts / logs
+catboost_info/
+*.tfevents
+
+# Optional: if you later decide outputs are too heavy, ignore selectively, e.g.:
+# outputs/tts_qwen_phrases/
+
+# Not part of this project (local coursework / unrelated notebooks & data)
+HW*.ipynb
+NLP-*.ipynb
+GenDL_*.ipynb
+hse-gen-4.ipynb
+homework_practice_*.ipynb
+market_value.ipynb
+male_players.csv
+df.json
+3930158 (1).json
+3930158 (2).json
+russian_trusted_root_ca.pem
+statsbomb.ipynb
