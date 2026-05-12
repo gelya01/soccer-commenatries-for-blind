@@ -1,0 +1,23 @@
+\begin{table}[H]
+\centering
+\small
+\caption{Сравнение стратегий группировки и экспертная оценка качества комментариев}
+\label{tab:llm-strategy-quality}
+\begin{threeparttable}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Стратегия} & \textbf{Payloads для LLM} & \textbf{$P_{50}$ событий} & \textbf{$P_{90}$ событий} & \textbf{Оценка 1--5} \\
+\midrule
+\texttt{event\_only} & 6056 & 1 & 1 & 2 \\
+\texttt{related\_only} & 1977 & 4 & 26 & 3 \\
+\texttt{related\_cap} & 5307 & 4 & 6 & 4 \\
+\texttt{related\_stop\_cap} & 5604 & 3 & 6 & \textbf{5} \\
+\texttt{time\_window} & 4163 & 6 & 6 & 3 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\footnotesize
+\item Payloads для LLM посчитаны для набора матчей, выбранных для озвучивания, после фильтрации класса \texttt{skip}. $P_{50}$ и $P_{90}$ характеризуют длину payloads внутри соответствующей стратегии.
+\item Оценка 1--5 выставлена по ручному просмотру качества комментариев: 1 --- непригодно, 5 --- наиболее пригодно для финальной озвучки. Отдельный детальный пример для матча Германия --- Шотландия показан на Рисунке~\ref{fig:grouping-compactness-germany-scotland}.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

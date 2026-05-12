@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820">
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#15324A"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="1600" height="820" fill="white"/>
+<text x="55" y="75" font-family="Arial, DejaVu Sans, sans-serif" font-size="39" font-weight="700" fill="#1F2937" text-anchor="start">Архитектура прототипа автоматического тифлокомментирования</text>
+<text x="58" y="112" font-family="Arial, DejaVu Sans, sans-serif" font-size="22" font-weight="400" fill="#64748B" text-anchor="start">От событий StatsBomb к отбору эпизодов, тексту, аудио и демонстрации результата</text>
+<rect x="40" y="145" width="1510" height="610" rx="14" ry="14" fill="none" stroke="#9DB0C7" stroke-width="3" stroke-dasharray="12 10"/>
+<text x="72" y="182" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#64748B" text-anchor="start">data + ML + generation pipeline</text>
+<rect x="70" y="250" width="225" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="90" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">01</text>
+<text x="140" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">StatsBomb</text>
+<text x="140" y="314" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">events + 360</text>
+<rect x="340" y="250" width="250" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="360" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">02</text>
+<text x="410" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Стандартизация</text>
+<text x="410" y="312" font-family="Arial, DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#23384F" text-anchor="start">координаты, стороны,</text>
+<rect x="635" y="250" width="250" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="655" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">03</text>
+<text x="705" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Признаки</text>
+<text x="705" y="314" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">зоны, движение, исходы</text>
+<rect x="930" y="250" width="235" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="950" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">04</text>
+<text x="1000" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Эпизоды</text>
+<text x="1000" y="314" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">related_events + лимиты</text>
+<rect x="1225" y="250" width="235" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="1245" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">05</text>
+<text x="1295" y="288" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Selector</text>
+<text x="1295" y="314" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">soft-labels / модели</text>
+<rect x="1225" y="430" width="235" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="1245" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">06</text>
+<text x="1295" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Payload JSON</text>
+<text x="1295" y="494" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">brief / must для LLM</text>
+<rect x="930" y="430" width="235" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="950" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">07</text>
+<text x="1000" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">LLM</text>
+<text x="1000" y="494" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">русский комментарий</text>
+<rect x="635" y="430" width="250" height="78" rx="14" ry="14" fill="#DCEEFF" stroke="#005BBB" stroke-width="3"/>
+<text x="655" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#005BBB" text-anchor="start">08</text>
+<text x="705" y="468" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Silero TTS</text>
+<text x="705" y="494" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">аудиофрагменты и склейка</text>
+<rect x="70" y="405" width="235" height="98" rx="14" ry="14" fill="#EAF7EF" stroke="#3BA55D" stroke-width="3"/>
+<text x="90" y="443" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#3BA55D" text-anchor="start">09</text>
+<text x="140" y="443" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Demo assets</text>
+<text x="140" y="469" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">кадры + текст + аудио</text>
+<rect x="70" y="560" width="235" height="78" rx="14" ry="14" fill="#EAF7EF" stroke="#3BA55D" stroke-width="3"/>
+<text x="90" y="598" font-family="Arial, DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#3BA55D" text-anchor="start">10</text>
+<text x="140" y="598" font-family="Arial, DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#1F2937" text-anchor="start">Streamlit</text>
+<text x="140" y="624" font-family="Arial, DejaVu Sans, sans-serif" font-size="19" font-weight="400" fill="#23384F" text-anchor="start">просмотр матча и звук</text>
+<rect x="635" y="610" width="250" height="70" rx="14" ry="14" fill="#FFF7E6" stroke="#F59E0B" stroke-width="2"/>
+<text x="651" y="640" font-family="Arial, DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#1F2937" text-anchor="start">Визуализации</text>
+<text x="651" y="666" font-family="Arial, DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#64748B" text-anchor="start">поле, 360, actor, visible area</text>
+<rect x="930" y="610" width="235" height="70" rx="14" ry="14" fill="#FFF0F3" stroke="#E84A5F" stroke-width="2"/>
+<text x="946" y="640" font-family="Arial, DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#1F2937" text-anchor="start">Оценка текста</text>
+<text x="946" y="666" font-family="Arial, DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#64748B" text-anchor="start">JSON validity, saliency, style</text>
+<rect x="340" y="610" width="250" height="70" rx="14" ry="14" fill="#F2F8FF" stroke="#9DB0C7" stroke-width="2"/>
+<text x="356" y="640" font-family="Arial, DejaVu Sans, sans-serif" font-size="20" font-weight="700" fill="#1F2937" text-anchor="start">Текстовые результаты</text>
+<text x="356" y="666" font-family="Arial, DejaVu Sans, sans-serif" font-size="17" font-weight="400" fill="#64748B" text-anchor="start">время + комментарий</text>
+<line x1="295" y1="289" x2="340" y2="289" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="590" y1="289" x2="635" y2="289" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="885" y1="289" x2="930" y2="289" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1165" y1="289" x2="1225" y2="289" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1342" y1="328" x2="1342" y2="430" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1225" y1="469" x2="1165" y2="469" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="930" y1="469" x2="885" y2="469" stroke="#15324A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="760" y1="508" x2="760" y2="610" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<line x1="1047" y1="508" x2="1047" y2="610" stroke="#E84A5F" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<line x1="635" y1="645" x2="305" y2="454" stroke="#3BA55D" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<line x1="590" y1="645" x2="305" y2="454" stroke="#3BA55D" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<line x1="635" y1="469" x2="305" y2="454" stroke="#3BA55D" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<line x1="188" y1="503" x2="188" y2="560" stroke="#3BA55D" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1190" y="610" width="310" height="72" rx="14" ry="14" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="1208" y="638" font-family="Arial, DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#1F2937" text-anchor="start">LLM получает не весь матч,</text>
+<text x="1208" y="664" font-family="Arial, DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#1F2937" text-anchor="start">а только payloads brief / must.</text>
+<line x1="1205" y1="622" x2="1342" y2="508" stroke="#E84A5F" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)" stroke-dasharray="10 8"/>
+<rect x="340" y="720" width="600" height="50" rx="14" ry="14" fill="white" stroke="#CBD5E1" stroke-width="2"/>
+<text x="358" y="752" font-family="Arial, DejaVu Sans, sans-serif" font-size="18" font-weight="400" fill="#1F2937" text-anchor="start">Streamlit — витрина готовых файлов, а не часть генерации.</text>
+</svg>

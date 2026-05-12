@@ -1,0 +1,410 @@
+В этом приложении показан один и тот же эпизод на разных стадиях обработки. Пример взят из реального файла \texttt{llm\_payloads\_speak\_set\_related\_stop\_cap\_summary.json}: матч Германия --- Шотландия, стратегия \texttt{related\_stop\_cap}. В листингах не показаны все поля JSON, а оставлены только те, которые важны для понимания пайплайна.
+
+\begin{lstlisting}[caption={Фрагмент исходного события StatsBomb до очистки},label={lst:raw-event-example}]
+{
+  "id": "df6f6fb7-f0b0-4561-9171-f4172f5e97e7",
+  "index": 5,
+  "period": 1,
+  "timestamp": "00:00:01.191",
+  "minute": 0,
+  "second": 1,
+  "type": {
+    "id": 30,
+    "name": "Pass"
+  },
+  "play_pattern": {
+    "id": 9,
+    "name": "From Kick Off"
+  },
+  "team": {
+    "id": 770,
+    "name": "Germany"
+  },
+  "player": {
+    "id": 8966,
+    "name": "Kai Havertz"
+  },
+  "position": {
+    "id": 23,
+    "name": "Center Forward"
+  },
+  "location": [
+    61.0,
+    40.1
+  ],
+  "duration": 1.234945,
+  "related_events": [
+    "f9195e75-1617-478c-bf9d-66f17151724a"
+  ],
+  "pass": {
+    "recipient": {
+      "id": 12407,
+      "name": "Maximilian Mittelst\u00e4dt"
+    },
+    "length": 18.603764,
+    "angle": -2.4475427,
+    "height": {
+      "id": 1,
+      "name": "Ground Pass"
+    },
+    "end_location": [
+      46.7,
+      28.2
+    ],
+    "body_part": {
+      "id": 38,
+      "name": "Left Foot"
+    },
+    "type": {
+      "id": 65,
+      "name": "Kick Off"
+    }
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={То же событие после стандартизации и очистки полей},label={lst:clean-event-example}]
+{
+  "id": "df6f6fb7-f0b0-4561-9171-f4172f5e97e7",
+  "index": 5,
+  "period": 1,
+  "timestamp": "00:00:01.191",
+  "minute": 0,
+  "second": 1,
+  "type": {
+    "name": "Pass"
+  },
+  "play_pattern": {
+    "name": "From Kick Off"
+  },
+  "team": {
+    "name": "Germany"
+  },
+  "player": {
+    "id": 8966,
+    "name": "Havertz",
+    "jersey_number": 7
+  },
+  "position": {
+    "name": "Center Forward"
+  },
+  "location": [
+    59.0,
+    39.9
+  ],
+  "duration": 1.234945,
+  "related_events": [
+    "f9195e75-1617-478c-bf9d-66f17151724a"
+  ],
+  "_flip180": true,
+  "_reference_team": "Scotland",
+  "pass": {
+    "recipient": {
+      "name": "Mittelst\u00e4dt"
+    },
+    "length": 18.603764,
+    "height": {
+      "name": "Ground Pass"
+    },
+    "end_location": [
+      73.3,
+      51.8
+    ],
+    "body_part": {
+      "name": "Left Foot"
+    },
+    "type": {
+      "name": "Kick Off"
+    }
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Добавленные производные признаки для события},label={lst:derived-event-example}]
+{
+  "quality_flags": {
+    "sb360_is_bad_filtered": 0,
+    "skip_derive": 0,
+    "skip_reason": null
+  },
+  "event_semantics": {
+    "event_type": "Pass",
+    "is_non_play": 0,
+    "is_low_signal": 0,
+    "is_key_action": 1
+  },
+  "orientation": {
+    "period": 1,
+    "team": "Germany",
+    "own_goal_x": 120.0,
+    "opp_goal_x": 0.0,
+    "attack_sign": -1
+  },
+  "zones": {
+    "start_abs": "center_circle_zone",
+    "end_abs": "right_half:center_lane",
+    "start_rel": "center_line",
+    "end_rel": "own_half",
+    "start_lane": "center_lane",
+    "end_lane": "center_lane",
+    "zone_transition": "center_line->own_half"
+  },
+  "movement": {
+    "dx": 14.299999999999997,
+    "dy": 11.899999999999999,
+    "forward_delta": -14.299999999999997,
+    "lateral_delta": 11.899999999999999,
+    "label": "backward",
+    "compass": "backward_left"
+  },
+  "episode_signals": {
+    "is_long_pass": 0,
+    "pass_length": 18.603764,
+    "pass_style_ru": "\u043d\u0438\u0437\u043e\u043c",
+    "pass_height_name": "Ground Pass",
+    "pass_recipient": "Mittelst\u00e4dt",
+    "pass_direction_compass": "backward_left",
+    "pass_target_abs": "right_half:center_lane",
+    "pass_target_rel": "own_half",
+    "switched_flank": 0,
+    "entered_opponent_half": 0,
+    "entered_opponent_box": 0
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Фрагмент реального payload эпизода для LLM},label={lst:llm-payload-example}]
+{
+  "match_id": "3930158",
+  "strategy": "related_stop_cap",
+  "chain_event_ids": [
+    "df6f6fb7-f0b0-4561-9171-f4172f5e97e7",
+    "f9195e75-1617-478c-bf9d-66f17151724a",
+    "65072c25-9c61-441e-a51c-52856c51ca94",
+    "01be895c-5835-4a8d-b99f-2a642f5d26dc"
+  ],
+  "selection": {
+    "soft_label_5": 4,
+    "soft_label_3": 2,
+    "commenting_mode": "must"
+  },
+  "chain_features": {
+    "events_n": 4,
+    "high_events_n": 0,
+    "set_play_events_n": 4,
+    "low_events_n": 1,
+    "entered_opponent_box_n": 0,
+    "importance_score_rule": 3
+  },
+  "events": [
+    {
+      "event_json": {
+        "id": "df6f6fb7-f0b0-4561-9171-f4172f5e97e7",
+        "index": 5,
+        "period": 1,
+        "timestamp": "00:00:01.191",
+        "minute": 0,
+        "second": 1,
+        "type": {
+          "name": "Pass"
+        },
+        "play_pattern": {
+          "name": "From Kick Off"
+        },
+        "team": {
+          "name": "Germany"
+        },
+        "player": {
+          "id": 8966,
+          "name": "Havertz",
+          "jersey_number": 7
+        },
+        "position": {
+          "name": "Center Forward"
+        },
+        "location": [
+          59.0,
+          39.9
+        ],
+        "duration": 1.234945,
+        "related_events": [
+          "f9195e75-1617-478c-bf9d-66f17151724a"
+        ],
+        "_flip180": true,
+        "_reference_team": "Scotland",
+        "pass": {
+          "recipient": {
+            "name": "Mittelst\u00e4dt"
+          },
+          "length": 18.603764,
+          "height": {
+            "name": "Ground Pass"
+          },
+          "end_location": [
+            73.3,
+            51.8
+          ],
+          "body_part": {
+            "name": "Left Foot"
+          },
+          "type": {
+            "name": "Kick Off"
+          }
+        }
+      },
+      "sb360_summary": {
+        "freeze_frame_n": 20,
+        "teammates_n": 10,
+        "opponents_n": 10,
+        "keepers_n": 0,
+        "visible_area_points_n": 7
+      },
+      "derived": {
+        "quality_flags": {
+          "sb360_is_bad_filtered": 0,
+          "skip_derive": 0,
+          "skip_reason": null
+        },
+        "event_semantics": {
+          "event_type": "Pass",
+          "is_non_play": 0,
+          "is_low_signal": 0,
+          "is_key_action": 1
+        },
+        "orientation": {
+          "period": 1,
+          "team": "Germany",
+          "own_goal_x": 120.0,
+          "opp_goal_x": 0.0,
+          "attack_sign": -1
+        },
+        "zones": {
+          "start_abs": "center_circle_zone",
+          "end_abs": "right_half:center_lane",
+          "start_rel": "center_line",
+          "end_rel": "own_half",
+          "start_lane": "center_lane",
+          "end_lane": "center_lane",
+          "zone_transition": "center_line->own_half"
+        },
+        "movement": {
+          "dx": 14.299999999999997,
+          "dy": 11.899999999999999,
+          "forward_delta": -14.299999999999997,
+          "lateral_delta": 11.899999999999999,
+          "label": "backward",
+          "compass": "backward_left"
+        },
+        "episode_signals": {
+          "is_long_pass": 0,
+          "pass_length": 18.603764,
+          "pass_style_ru": "\u043d\u0438\u0437\u043e\u043c",
+          "pass_height_name": "Ground Pass",
+          "pass_recipient": "Mittelst\u00e4dt",
+          "pass_direction_compass": "backward_left",
+          "pass_target_abs": "right_half:center_lane",
+          "pass_target_rel": "own_half",
+          "switched_flank": 0,
+          "entered_opponent_half": 0,
+          "entered_opponent_box": 0
+        }
+      }
+    },
+    {
+      "event_json": {
+        "id": "f9195e75-1617-478c-bf9d-66f17151724a",
+        "index": 6,
+        "period": 1,
+        "timestamp": "00:00:02.426",
+        "minute": 0,
+        "second": 2,
+        "type": {
+          "name": "Ball Receipt*"
+        },
+        "play_pattern": {
+          "name": "From Kick Off"
+        },
+        "team": {
+          "name": "Germany"
+        },
+        "player": {
+          "id": 12407,
+          "name": "Mittelst\u00e4dt",
+          "jersey_number": 18
+        },
+        "position": {
+          "name": "Left Back"
+        },
+        "location": [
+          73.3,
+          51.8
+        ],
+        "related_events": [
+          "df6f6fb7-f0b0-4561-9171-f4172f5e97e7"
+        ],
+        "_flip180": true,
+        "_reference_team": "Scotland"
+      },
+      "sb360_summary": {
+        "freeze_frame_n": 20,
+        "teammates_n": 10,
+        "opponents_n": 10,
+        "keepers_n": 0,
+        "visible_area_points_n": 6
+      },
+      "derived": {
+        "quality_flags": {
+          "sb360_is_bad_filtered": 0,
+          "skip_derive": 0,
+          "skip_reason": null
+        },
+        "event_semantics": {
+          "event_type": "Ball Receipt*",
+          "is_non_play": 0,
+          "is_low_signal": 1,
+          "is_key_action": 0
+        },
+        "orientation": {
+          "period": 1,
+          "team": "Germany",
+          "own_goal_x": 120.0,
+          "opp_goal_x": 0.0,
+          "attack_sign": -1
+        },
+        "zones": {
+          "start_abs": "right_half:center_lane",
+          "end_abs": null,
+          "start_rel": "own_half",
+          "end_rel": null,
+          "start_lane": "center_lane",
+          "end_lane": null,
+          "zone_transition": null
+        },
+        "movement": {
+          "dx": null,
+          "dy": null,
+          "forward_delta": null,
+          "lateral_delta": null,
+          "label": "unknown",
+          "compass": "unknown"
+        },
+        "episode_signals": {
+          "is_long_pass": 0,
+          "pass_length": null,
+          "pass_style_ru": null,
+          "pass_height_name": null,
+          "pass_recipient": null,
+          "pass_direction_compass": null,
+          "pass_target_abs": null,
+          "pass_target_rel": null,
+          "switched_flank": 1,
+          "entered_opponent_half": 0,
+          "entered_opponent_box": 0
+        }
+      }
+    }
+  ]
+}
+\end{lstlisting}
+
+Смысл преобразования следующий. Исходный StatsBomb JSON содержит подробное описание одного действия, но в нём много полей, которые не нужны для генерации комментария. После очистки остаются факты, которые можно безопасно передать модели: время, команда, игрок, тип действия, координаты и исход. Затем добавляется блок \texttt{derived}: он не берётся из StatsBomb напрямую, а рассчитывается в работе. Именно в нём появляются направление атаки, относительные зоны поля, движение вперёд или назад, признаки длинной передачи, перевода фланга и входа в опасную зону. Финальный payload объединяет несколько связанных событий в эпизод, добавляет агрегированные признаки цепочки и режим комментирования.
