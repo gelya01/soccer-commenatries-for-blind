@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="72" viewBox="0 0 300 72" role="img" aria-label="StatsBomb">
+  <rect width="300" height="72" rx="36" fill="#ffffff"/>
+  <g transform="translate(26 12)" fill="none" stroke-linecap="round">
+    <circle cx="24" cy="24" r="20" stroke="#ff2d20" stroke-width="7"/>
+    <circle cx="24" cy="24" r="11" stroke="#ff2d20" stroke-width="6"/>
+    <circle cx="24" cy="24" r="3.8" fill="#ff2d20" stroke="none"/>
+    <path d="M10 39 L42 7" stroke="#8a9a9a" stroke-width="8"/>
+    <circle cx="24" cy="24" r="20" stroke="#8a9a9a" stroke-width="7" stroke-dasharray="28 98" transform="rotate(45 24 24)"/>
+    <circle cx="24" cy="24" r="11" stroke="#8a9a9a" stroke-width="6" stroke-dasharray="16 70" transform="rotate(45 24 24)"/>
+  </g>
+  <text x="82" y="49" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="800" fill="#ff2d20" letter-spacing="-2">StatsBomb</text>
+</svg>
